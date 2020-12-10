@@ -11,8 +11,16 @@ namespace Black_Friday
         DateTime thirdFriday;
         DateTime lastFriday;
         DateTime staticDateTime = new DateTime(2020, 12, 04);
-
-        enum fridaysOfTheMonth
+        string[] Clothing_AccessoryList = new string[10] { "Blue Denim Jacket", "Ferragamo Slip-In Loafers", "Louboutini Red Bottom Heels", "Two-sided Bucket Hats", "Nike Off The Wall", "Brown Fenty Purse", "Fashion Winter Boots", "Off White Winter Coat", "Beluga Necklace", "Men Thick Cuban Chain" };
+        double[] Clothing_AccessoryOriginalPriceList = new double[10] { 100, 2000, 4000, 50, 150, 500, 350, 1050, 900, 300 };
+        string[] electronicsList = new string[10] { "Samsun A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
+        double[] electronicsOriginalPriceList = new double[10] { 1000, 2500, 400, 5050, 200, 500, 350, 450, 70, 120 };
+        string[] automobile = new string[10] { "Lexus 320 (2020 Model)", "Mercedes Benz X200", "Honda Accord", "Porsche Spare Tyres", "Masarati Engine Oil", "Lexus 470 HeadLamps", "Toyota Corolla 2019", "Mack Truck Spare Tyres", "Lambourghini Limited 2020 Edition", "Car body spray" };
+        double[] automobileOriginalPriceList = new double[10] { 10000, 25000, 4000, 5900, 2000, 8000, 3000, 3000, 500000, 400 };
+        string[] foodHousehold = new string[10] { "100KG Bag Of Rice", "Carton Of Tasty Tom Tin Tomatoes", "Trailler of Coke", "10 Gallons of Power Oil", "Marbe DinnerWare Set", "Gold Crested Ice cream Cups & Spoons", "Toyota Corolla 2019", "Mack Truck Spare Tyres", "Lambourghini Limited 2020 Edition", "Car body spray" };
+        double[] foodHouseholdOriginalPriceList = new double[10] { 1000, 2000, 400, 500, 200, 800, 300, 300, 5000, 400 };
+        DateTime[] allFridays;
+        public enum fridaysOfTheMonth
         {
             firstFriday, secondFriday, thirdFriday, lastFriday
         }
@@ -23,13 +31,6 @@ namespace Black_Friday
 
         public fridaysOfTheMonth CheckFriday(DateTime day)
         {
-            /*switch(day)
-            {
-                case firstFriday:
-                    return fridaysOfTheMonth.firstFriday;
-                    
-            }*/
-
             if(day == firstFriday)
             {
                 return fridaysOfTheMonth.firstFriday;
@@ -42,7 +43,7 @@ namespace Black_Friday
             {
                 return fridaysOfTheMonth.thirdFriday;
             }
-            else if (day == lastFriday)
+            else
             {
                 return fridaysOfTheMonth.lastFriday;
             }
@@ -56,19 +57,19 @@ namespace Black_Friday
         }
         public void getFridays()
         {
-            firstFriday = new DateTime(2020, 12, 01);
-
-            while (firstFriday.DayOfWeek != friday)
+            int numDays = DateTime.DaysInMonth(staticDateTime.Year, staticDateTime.Month);
+            int index = 0;
+            DateTime newDay = new DateTime(staticDateTime.Year, staticDateTime.Month, 01);
+            while (numDays > 0)
             {
-                firstFriday = firstFriday.AddDays(1);
+                if(newDay.DayOfWeek == friday)
+                {
+                    allFridays[index] = newDay;
+                    index++;
+                }
+                newDay = newDay.AddDays(1);
+                numDays--;
             }
-
-            secondFriday = firstFriday.AddDays(7);
-
-            thirdFriday = secondFriday.AddDays(7);
-           
-            lastFriday = thirdFriday.AddDays(7);
-
         }
         public void optionList()
         {
@@ -90,21 +91,21 @@ namespace Black_Friday
             {
                 case 1:
                     Console.WriteLine("Welcome to the Clothing and Acessories Category, we have great deals for you!");
-                    clothingAccesories();
+                    categoryChoice(Clothing_AccessoryList, Clothing_AccessoryOriginalPriceList);
                     break;
 
                 case 2:
                     Console.WriteLine("Welcome to the Electronics Category, we have great deals for you!");
-                    electronics();
+                    categoryChoice(electronicsList, electronicsOriginalPriceList);
                     break;
 
                 case 3:
-                    Console.WriteLine("Welcome to the Clothing and Acessories Category, we have great deals for you!");
-                    automobiles();
+                    Console.WriteLine("Welcome to the Automobile, we have great deals for you!");
+                    categoryChoice(automobile, automobileOriginalPriceList);
                     break;
                 case 4:
-                    Console.WriteLine("Welcome to the Clothing and Acessories Category, we have great deals for you!");
-                    foodHousehold();
+                    Console.WriteLine("Welcome to the Food and Household Items Category, we have great deals for you!");
+                    categoryChoice(foodHousehold, foodHouseholdOriginalPriceList);
                     break;
                 default:
                     Console.WriteLine("Please choose a category between 1-4 ");
@@ -112,67 +113,48 @@ namespace Black_Friday
                     break;
             }
         }
-        public void getDiscount()
-        {
-            if(currentdt == )
-        }
-        public void categoryChoice(String[] productList, double[] productPriceList[])
+        public double getDiscount(fridaysOfTheMonth dt)
         {
 
-        }
-        public void clothingAccesories()
-        {
-            
-            discount = 0.05;
-            string[] Clothing_AccessoryList = new string[10] { "Blue Denim Jacket", "Ferragamo Slip-In Loafers", "Louboutini Red Bottom Heels", "Two-sided Bucket Hats", "Nike Off The Wall", "Brown Fenty Purse", "Fashion Winter Boots", "Off White Winter Coat", "Beluga Necklace", "Men Thick Cuban Chain" };
-            double[] Clothing_AccessoryOriginalPriceList = new double[10] { 100, 2000, 4000, 50, 150, 500, 350, 1050, 900, 300 };
-            if(staticDateTime == firstFriday)
+
+            if(dt == fridaysOfTheMonth.firstFriday)
             {
-                Console.WriteLine("All Products in this category are at a discounted price of 5%(Black Friday Deals!!!)\n");
-                /*foreach(var price in Clothing_AccessoryOriginalPriceList)
-                {
-                    double calculatedDiscount = (price - price * discount);
-                    foreach(var product in Clothing_AccessoryList)
-                    {
-                        Console.WriteLine(product + "\nOriginal Price -> " + price + "$ \nDiscounted Price ->" + calculatedDiscount + "$ \n");
-
-                    }
-                }*/
-                while (i < Clothing_AccessoryList.Length)
-                {
-                    double calculatedDiscount = (Clothing_AccessoryOriginalPriceList[i] - Clothing_AccessoryOriginalPriceList[i] * discount);
-                    Console.WriteLine(Clothing_AccessoryList[i] + "\nOriginal Price -> " + Clothing_AccessoryOriginalPriceList[i] + "$ \nDiscounted Price ->" + calculatedDiscount + "$ \n");
-                    i++;
-                }
-                
+                return 0.05;
+            }
+            else if(dt == fridaysOfTheMonth.secondFriday)
+            {
+                return  0.1;
+            }
+            else if(dt == fridaysOfTheMonth.thirdFriday)
+            {
+                return 0.15;
             }
             else
             {
-                if (staticDateTime > firstFriday)
-                {
-                    Console.WriteLine("Sorry, but you have missed the discount on products in this category");
-                    Console.WriteLine("All Products in this category are at their original prices\n");
-                    while (i < Clothing_AccessoryList.Length)
-                    {
-                        Console.WriteLine(Clothing_AccessoryList[i] + "\nPrice -> " + Clothing_AccessoryOriginalPriceList[i] + "$ \n");
-                        i++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Discount for this Category will be on " + firstFriday.ToString("F"));
-                    Console.WriteLine("All Products in this category are at their original prices");
-                    while (i < Clothing_AccessoryList.Length)
-                    {
-                       
-                        Console.WriteLine(Clothing_AccessoryList[i] + "\nPrice -> " + Clothing_AccessoryOriginalPriceList[i] + "$ \n");
-                        i++;
-                    }
-                }
+                return 0.2;
             }
         }
-        public void electronics()
+
+        //check a date
+        public DateTime checkDate(DateTime dt)
         {
+
+            DateTime check = firstFriday;
+            while(true)
+            {
+                if(dt < firstFriday)
+                {
+                    return firstFriday;
+                }
+                check = 
+            }
+        }
+        public void categoryChoice(String[] productList, double[] productPriceList[])
+        {
+            fridaysOfTheMonth dt = CheckFriday(currentdt);
+            discount = getDiscount(dt);
+            string strDiscount = (discount * 100).ToString();
+
             Console.WriteLine("Welcome to the Electronics Category, we have great deals for you!");
             discount = 0.1;
             string[] electronicsList = new string[10] { "Samsun A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
@@ -184,7 +166,7 @@ namespace Black_Friday
                 while (i < electronicsList.Length)
                 {
                     double calculatedDiscount = (electronicsOriginalPriceList[i] - electronicsOriginalPriceList[i] * discount);
-                    Console.WriteLine(electronicsList[i] + "\nPrice -> " + electronicsOriginalPriceList[i] + "$ \nDiscounted Price ->" + calculatedDiscount+"$ \n");
+                    Console.WriteLine(electronicsList[i] + "\nPrice -> " + electronicsOriginalPriceList[i] + "$ \nDiscounted Price ->" + calculatedDiscount + "$ \n");
                     i++;
                 }
             }
@@ -213,88 +195,10 @@ namespace Black_Friday
                 }
             }
         }
-        public void automobiles()
-        {
-            Console.WriteLine("Welcome to the Automobile, we have great deals for you!");
-            discount = 0.15;
-            string[] automobile = new string[10] { "Lexus 320 (2020 Model)", "Mercedes Benz X200", "Honda Accord", "Porsche Spare Tyres", "Masarati Engine Oil", "Lexus 470 HeadLamps", "Toyota Corolla 2019", "Mack Truck Spare Tyres", "Lambourghini Limited 2020 Edition", "Car body spray" };
-            double[] automobileOriginalPriceList = new double[10] { 10000, 25000, 4000, 5900, 2000, 8000, 3000, 3000, 500000, 400 };
-            Console.WriteLine("Welcome to the Automobile Category, we have great deals for you!");
-            if (currentdt == thirdFriday)
-            {
-                Console.WriteLine("All Products in this category are at a discounted price of 15%(Black Friday Deals!!!)");
-                while (i < automobile.Length)
-                {
-                    double calculatedDiscount = (automobileOriginalPriceList[i] - automobileOriginalPriceList[i] * discount);
-                    Console.WriteLine(automobile[i] + "\nPrice -> " + automobileOriginalPriceList[i] + "$ \nDiscounted Price ->" + calculatedDiscount + "$ \n");
-                    i++;
-                }
-            }
-            else
-            {
-                if (currentdt > thirdFriday)
-                {
-                    Console.WriteLine("Sorry, but you have missed the discount on products in this category");
-                    Console.WriteLine("All Products in this category are at their original prices");
-                    while (i < automobile.Length)
-                    {
-                        Console.WriteLine(automobile[i] + "\nPrice -> " + automobileOriginalPriceList[i] + "$ \n");
-                        i++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Discount will be on " + thirdFriday.ToString("F"));
-                    Console.WriteLine("All Products in this category are at their original prices");
-                    while (i < automobile.Length)
-                    {
-                        Console.WriteLine(automobile[i] + "\nPrice -> " + automobileOriginalPriceList[i] + "$ \n");
-                        i++;
-                    }
-                }
-            }
-        }
-        public void foodHousehold()
-        {
-            Console.WriteLine("Welcome to the Food and Household Items Category, we have great deals for you!");
-            if (currentdt == lastFriday)
-            {
-                Console.WriteLine("All Products in this category are at a discounted price of 20%");
-                Console.WriteLine("Welcome to the Automobile, we have great deals for you!");
-                discount = 0.2;
-                string[] automobile = new string[10] { "100KG Bag Of Rice", "Carton Of Tasty Tom Tin Tomatoes", "Trailler of Coke", "10 Gallons of Power Oil", "Marbe DinnerWare Set", "Gold Crested Ice cream Cups & Spoons", "Toyota Corolla 2019", "Mack Truck Spare Tyres", "Lambourghini Limited 2020 Edition", "Car body spray" };
-                double[] automobileOriginalPriceList = new double[10] { 10000, 25000, 4000, 5900, 2000, 8000, 3000, 3000, 500000, 400 };
-                Console.WriteLine("Welcome to the Automobile Category, we have great deals for you!");
-                if (currentdt == thirdFriday)
-                {
-                    Console.WriteLine("All Products in this category are at a discounted price of 15%(Black Friday Deals!!!)");
-                    while (i < automobile.Length)
-                    {
-                        double calculatedDiscount = (automobileOriginalPriceList[i] - automobileOriginalPriceList[i] * discount);
-                        Console.WriteLine(automobile[i] + "\nPrice -> " + automobileOriginalPriceList[i] + "$ \nDiscounted Price ->" + calculatedDiscount + "$ \n");
-                        i++;
-                    }
-                }
-            }
-            else
-            {
-                if (currentdt > lastFriday)
-                {
-                    Console.WriteLine("Sorry, but you have missed the discount on products in this category");
-                    Console.WriteLine("All Products in this category are at their original prices");
-                }
-                else
-                {
-                    Console.WriteLine("All Products in this category are at their original prices");
-                    Console.WriteLine("Discount will be on " + lastFriday.ToString("F"));
-                }
-            }
-        }
+        
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            BlackFiday day1 = new BlackFiday();
-            day1.welcome();
+            
         }
     }
 }
