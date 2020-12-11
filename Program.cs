@@ -13,11 +13,11 @@ namespace Black_Friday
         DateTime staticDateTime = new DateTime(2020, 12, 04);
         string[] Clothing_AccessoryList = new string[10] { "Blue Denim Jacket", "Ferragamo Slip-In Loafers", "Louboutini Red Bottom Heels", "Two-sided Bucket Hats", "Nike Off The Wall", "Brown Fenty Purse", "Fashion Winter Boots", "Off White Winter Coat", "Beluga Necklace", "Men Thick Cuban Chain" };
         double[] Clothing_AccessoryOriginalPriceList = new double[10] { 100, 2000, 4000, 50, 150, 500, 350, 1050, 900, 300 };
-        string[] electronicsList = new string[10] { "Samsun A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
+        string[] electronicsList = new string[10] { "Samsung A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
         double[] electronicsOriginalPriceList = new double[10] { 1000, 2500, 400, 5050, 200, 500, 350, 450, 70, 120 };
         string[] automobile = new string[10] { "Lexus 320 (2020 Model)", "Mercedes Benz X200", "Honda Accord", "Porsche Spare Tyres", "Masarati Engine Oil", "Lexus 470 HeadLamps", "Toyota Corolla 2019", "Mack Truck Spare Tyres", "Lambourghini Limited 2020 Edition", "Car body spray" };
         double[] automobileOriginalPriceList = new double[10] { 10000, 25000, 4000, 5900, 2000, 8000, 3000, 3000, 500000, 400 };
-        string[] foodHousehold = new string[10] { "100KG Bag Of Rice", "Carton Of Tasty Tom Tin Tomatoes", "Trailler of Coke", "10 Gallons of Power Oil", "Marbe DinnerWare Set", "Gold Crested Ice cream Cups & Spoons", "Toyota Corolla 2019", "Mack Truck Spare Tyres", "Lambourghini Limited 2020 Edition", "Car body spray" };
+        string[] foodHousehold = new string[10] { "100KG Bag Of Rice", "Carton Of Tasty Tom Tin Tomatoes", "Trailler of Coke", "10 Gallons of Power Oil", "Marbe DinnerWare Set", "Gold Crested Ice cream Cups & Spoons", "Kellog's Corn Flakes", "Skippy Peanut Butter", "Golden Penny Spaghetti", "Golden Morn" };
         double[] foodHouseholdOriginalPriceList = new double[10] { 1000, 2000, 400, 500, 200, 800, 300, 300, 5000, 400 };
         DateTime[] allFridays;
         public enum fridaysOfTheMonth
@@ -73,10 +73,10 @@ namespace Black_Friday
         }
         public void optionList()
         {
-            Console.WriteLine("On " + firstFriday.ToString("F")+ " " + " The Clothing & Accessories Category is on Discount");
-            Console.WriteLine("On " + secondFriday.ToString("F") + " " + " The Electronic Category is on Discount");
-            Console.WriteLine("On " + thirdFriday.ToString("F") + " " + " The Automobiles Category is on Discount");
-            Console.WriteLine("On " + lastFriday.ToString("F") + " " + " The Food & Household Items Category is on Discount");
+            Console.WriteLine("On {0}  The Clothing & Accessories Category is on Discount", firstFriday.ToLongDateString());
+            Console.WriteLine("On {0}  The Electronic Category is on Discount", secondFriday.ToLongDateString());
+            Console.WriteLine("On {0}  The Automobiles Category is on Discount", thirdFriday.ToLongDateString());
+            Console.WriteLine("On {0}  The Food & Household Items Category is on Discount", lastFriday.ToLongDateString());
             Console.WriteLine("What Category would you like to Shop from?");
             Console.WriteLine("Enter 1 for Clothing and Accessories\n" +
                 "Enter 2 for Electronics\n" +
@@ -157,7 +157,7 @@ namespace Black_Friday
 
             Console.WriteLine("Welcome to the Electronics Category, we have great deals for you!");
             discount = 0.1;
-            string[] electronicsList = new string[10] { "Samsun A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
+            string[] electronicsList = new string[10] { "Samsung A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
             double[] electronicsOriginalPriceList = new double[10] { 1000, 2500, 400, 5050, 200, 500, 350, 450, 70, 120 };
             Console.WriteLine("Welcome to the Electronics Category, we have great deals for you!");
             if (currentdt == secondFriday)
@@ -184,7 +184,7 @@ namespace Black_Friday
                 }
                 else
                 {
-                    Console.WriteLine("Discount for this Category will be on " + secondFriday.ToString("F"));
+                    Console.WriteLine("Discount for this Category will be on " + secondFriday.ToLongDateString());
                     Console.WriteLine("All Products in this category are at their original prices");
                     while (i < electronicsList.Length)
                     {
