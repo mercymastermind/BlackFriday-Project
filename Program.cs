@@ -5,12 +5,8 @@ namespace Black_Friday
     class BlackFiday
     {
         DayOfWeek friday = DayOfWeek.Friday;
-        DateTime currentdt = DateTime.Now; 
-        DateTime firstFriday;
-        DateTime secondFriday;
-        DateTime thirdFriday;
-        DateTime lastFriday;
-        DateTime staticDateTime = new DateTime(2020, 12, 04);
+        static DateTime staticDateTime = new DateTime(2021, 01, 15);
+        DateTime currentdt = staticDateTime;
         string[] Clothing_AccessoryList = new string[10] { "Blue Denim Jacket", "Ferragamo Slip-In Loafers", "Louboutini Red Bottom Heels", "Two-sided Bucket Hats", "Nike Off The Wall", "Brown Fenty Purse", "Fashion Winter Boots", "Off White Winter Coat", "Beluga Necklace", "Men Thick Cuban Chain" };
         double[] Clothing_AccessoryOriginalPriceList = new double[10] { 100, 2000, 4000, 50, 150, 500, 350, 1050, 900, 300 };
         string[] electronicsList = new string[10] { "Samsung A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
@@ -19,7 +15,7 @@ namespace Black_Friday
         double[] automobileOriginalPriceList = new double[10] { 10000, 25000, 4000, 5900, 2000, 8000, 3000, 3000, 500000, 400 };
         string[] foodHousehold = new string[10] { "100KG Bag Of Rice", "Carton Of Tasty Tom Tin Tomatoes", "Trailler of Coke", "10 Gallons of Power Oil", "Marbe DinnerWare Set", "Gold Crested Ice cream Cups & Spoons", "Kellog's Corn Flakes", "Skippy Peanut Butter", "Golden Penny Spaghetti", "Golden Morn" };
         double[] foodHouseholdOriginalPriceList = new double[10] { 1000, 2000, 400, 500, 200, 800, 300, 300, 5000, 400 };
-        DateTime[] allFridays;
+        DateTime[] allFridays = new DateTime[5];
         public enum fridaysOfTheMonth
         {
             firstFriday, secondFriday, thirdFriday, lastFriday
@@ -29,17 +25,18 @@ namespace Black_Friday
         int i;
         double discount;
 
+        //  check which friday it is.
         public fridaysOfTheMonth CheckFriday(DateTime day)
         {
-            if(day == firstFriday)
+            if(day == allFridays[0])
             {
                 return fridaysOfTheMonth.firstFriday;
             }
-            else if (day == secondFriday)
+            else if (day == allFridays[1])
             {
                 return fridaysOfTheMonth.secondFriday;
             }
-            else if (day== thirdFriday)
+            else if (day == allFridays[2])
             {
                 return fridaysOfTheMonth.thirdFriday;
             }
@@ -48,6 +45,13 @@ namespace Black_Friday
                 return fridaysOfTheMonth.lastFriday;
             }
         }
+
+        public bool isFriday(DateTime dt)
+        {
+            return dt.DayOfWeek == DayOfWeek.Friday;
+        }
+
+        //  start the program
         public void welcome()
         {
             Console.WriteLine("Welcome To the biggest sales in Africa, Black Friday!");
@@ -55,6 +59,7 @@ namespace Black_Friday
             getFridays();
             optionList();
         }
+
         public void getFridays()
         {
             int numDays = DateTime.DaysInMonth(staticDateTime.Year, staticDateTime.Month);
@@ -71,12 +76,13 @@ namespace Black_Friday
                 numDays--;
             }
         }
+
         public void optionList()
         {
-            Console.WriteLine("On {0}  The Clothing & Accessories Category is on Discount", firstFriday.ToLongDateString());
-            Console.WriteLine("On {0}  The Electronic Category is on Discount", secondFriday.ToLongDateString());
-            Console.WriteLine("On {0}  The Automobiles Category is on Discount", thirdFriday.ToLongDateString());
-            Console.WriteLine("On {0}  The Food & Household Items Category is on Discount", lastFriday.ToLongDateString());
+            Console.WriteLine("On {0}  The Clothing & Accessories Category is on Discount", allFridays[0].ToLongDateString());
+            Console.WriteLine("On {0}  The Electronic Category is on Discount", allFridays[1].ToLongDateString());
+            Console.WriteLine("On {0}  The Automobiles Category is on Discount", allFridays[2].ToLongDateString());
+            Console.WriteLine("On {0}  The Food & Household Items Category is on Discount", allFridays[3].ToLongDateString());
             Console.WriteLine("What Category would you like to Shop from?");
             Console.WriteLine("Enter 1 for Clothing and Accessories\n" +
                 "Enter 2 for Electronics\n" +
@@ -85,6 +91,7 @@ namespace Black_Friday
             option = Convert.ToInt16(Console.ReadLine());
             optionChoice();
         }
+
         public void optionChoice()
         {
             switch (option)
@@ -115,8 +122,6 @@ namespace Black_Friday
         }
         public double getDiscount(fridaysOfTheMonth dt)
         {
-
-
             if(dt == fridaysOfTheMonth.firstFriday)
             {
                 return 0.05;
@@ -135,70 +140,60 @@ namespace Black_Friday
             }
         }
 
-        //check a date
-        public DateTime checkDate(DateTime dt)
+        public DateTime getNearestFriday(DateTime dt)
         {
-
-            DateTime check = firstFriday;
-            while(true)
+            DateTime upperFriday = allFridays[0].AddYears(1);
+            for(int i = 0; i < allFridays.Length; i++)
             {
-                if(dt < firstFriday)
+                if(dt <= allFridays[i])
                 {
-                    return firstFriday;
+                    upperFriday = allFridays[i];
+                    break;
                 }
-                check = 
             }
+            return upperFriday;
         }
-        public void categoryChoice(String[] productList, double[] productPriceList[])
+        public void categoryChoice(String[] productList, double[] productPriceList)
         {
-            fridaysOfTheMonth dt = CheckFriday(currentdt);
-            discount = getDiscount(dt);
-            string strDiscount = (discount * 100).ToString();
+            string strDiscount;
 
-            Console.WriteLine("Welcome to the Electronics Category, we have great deals for you!");
-            discount = 0.1;
-            string[] electronicsList = new string[10] { "Samsung A20", "LG 120 inch Solar TV", "Higher Thermocool Electronic Washing Machine", "HP Polaroid 15 inch Gaming Laptop", "Iphone 12 Pro", "Soundless Maxi Generator", "Iphone Earpods", "Tecno Camon 12", "HD Stereo Palma Set", "Touch Sensitive Light Box" };
-            double[] electronicsOriginalPriceList = new double[10] { 1000, 2500, 400, 5050, 200, 500, 350, 450, 70, 120 };
-            Console.WriteLine("Welcome to the Electronics Category, we have great deals for you!");
-            if (currentdt == secondFriday)
+            if (isFriday(currentdt))
             {
-                Console.WriteLine("All Products in this category are at a discounted price of 10%(Black Friday Deals!!!)");
-                while (i < electronicsList.Length)
-                {
-                    double calculatedDiscount = (electronicsOriginalPriceList[i] - electronicsOriginalPriceList[i] * discount);
-                    Console.WriteLine(electronicsList[i] + "\nPrice -> " + electronicsOriginalPriceList[i] + "$ \nDiscounted Price ->" + calculatedDiscount + "$ \n");
-                    i++;
-                }
+                fridaysOfTheMonth dt = CheckFriday(currentdt);
+                discount = getDiscount(dt);
+            }
+
+            else
+            {
+                discount = 0;
+            }
+
+            strDiscount = (discount * 100).ToString();
+
+            int i = 0;
+            if(discount == 0)
+            {
+                Console.WriteLine("All Products in this category are not discounted!)");
+                Console.WriteLine("Discount for this Category will be on " + getNearestFriday(currentdt));
             }
             else
             {
-                if (currentdt > secondFriday)
-                {
-                    Console.WriteLine("Sorry, but you have missed the discount on products in this category");
-                    Console.WriteLine("All Products in this category are at their original prices");
-                    while (i < electronicsList.Length)
-                    {
-                        Console.WriteLine(electronicsList[i] + "\nPrice -> " + electronicsOriginalPriceList[i] + "$ \n");
-                        i++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Discount for this Category will be on " + secondFriday.ToLongDateString());
-                    Console.WriteLine("All Products in this category are at their original prices");
-                    while (i < electronicsList.Length)
-                    {
+                Console.WriteLine("All Products in this category are at a discounted price of {0}%(Black Friday Deals!!!)", strDiscount);
+            }
 
-                        Console.WriteLine(electronicsList[i] + "\nPrice -> " + electronicsOriginalPriceList[i] + "$ \n");
-                        i++;
-                    }
-                }
+            while (i < productList.Length)
+            {
+                double calculatedDiscount = (productPriceList[i] - productPriceList[i] * discount);
+                Console.WriteLine(productList[i] + "\nPrice -> " + productPriceList[i] + "$ \nDiscounted Price ->" + 
+                    calculatedDiscount + "$ \n");
+                i++;
             }
         }
         
         static void Main(string[] args)
         {
-            
+            BlackFiday blackFiday = new BlackFiday();
+            blackFiday.welcome();
         }
     }
 }
