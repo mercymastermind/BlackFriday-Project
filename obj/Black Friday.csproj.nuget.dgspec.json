@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gbolu\\OneDrive\\Code_Files\\C#\\Black Friday\\Black Friday.csproj": {}
+    "C:\\Users\\reubenitaosas\\Desktop\\Black Friday\\Black Friday.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gbolu\\OneDrive\\Code_Files\\C#\\Black Friday\\Black Friday.csproj": {
+    "C:\\Users\\reubenitaosas\\Desktop\\Black Friday\\Black Friday.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gbolu\\OneDrive\\Code_Files\\C#\\Black Friday\\Black Friday.csproj",
+        "projectUniqueName": "C:\\Users\\reubenitaosas\\Desktop\\Black Friday\\Black Friday.csproj",
         "projectName": "Black Friday",
-        "projectPath": "C:\\Users\\Gbolu\\OneDrive\\Code_Files\\C#\\Black Friday\\Black Friday.csproj",
-        "packagesPath": "C:\\Users\\Gbolu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gbolu\\OneDrive\\Code_Files\\C#\\Black Friday\\obj\\",
+        "projectPath": "C:\\Users\\reubenitaosas\\Desktop\\Black Friday\\Black Friday.csproj",
+        "packagesPath": "C:\\Users\\reubenitaosas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\reubenitaosas\\Desktop\\Black Friday\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Gbolu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\reubenitaosas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +42,6 @@
         "netcoreapp2.1": {
           "dependencies": {
             "Microsoft.NETCore.App": {
-              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
