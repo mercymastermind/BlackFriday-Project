@@ -12,6 +12,7 @@ namespace Black_Friday
 
         private Category() { }
 
+        //  returns an instance of a category using the category name, an array of product names and an array of product prices.
         public static Category createInstance(string name, string[] productsNameList, double[] productsPriceList, int size)
         {
             Category temp = new Category();
@@ -51,6 +52,9 @@ namespace Black_Friday
         {
             return productNames;
         }
-        public Array getProductPrices => productPrices;
+        public Array getProductPrices()
+        {
+            return productPrices;
+        }
     }
 }
